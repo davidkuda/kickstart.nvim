@@ -29,21 +29,20 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-
 -- David:
 -- copy to clipboard
 vim.keymap.set('v', 'Y', '"+y')
 
-
 -- working with tabs
 -- inspiration: https://github.com/nanozuki/tabby.nvim?tab=readme-ov-file#key-mapping-example
-vim.keymap.set('n', '<Leader>tn', ':TabRename ', { desc = '[t]ab re[n]ame' })
-vim.api.nvim_set_keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
--- vim.api.nvim_set_keymap("n", "<leader>tn", ":tabn<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true })
+vim.keymap.set('n', '<Leader>tr', ':TabRename ', { desc = '[t]ab [r]ename' })
+vim.keymap.set('n', '<leader>tn', ':$tabnew<CR>:TabRename ', { desc = '[t]ab new with name' })
+vim.keymap.set('n', '<leader>tj', ':$tabnew<CR>', { desc = '[t]ab new ("down")' })
+vim.keymap.set('n', '<leader>tk', ':tabclose<CR>', { desc = '[t]ab close ("up")' })
+-- vim.keymap.set('n', '<leader>to', ':tabonly<CR>', { desc = '[t]ab '})
+vim.keymap.set('n', '<leader>th', 'gT', { desc = '[t]ab previous ("left")' })
+vim.keymap.set('n', '<leader>tl', 'gt', { desc = '[t]ab next ("right")' })
 -- move current tab to previous position
-vim.api.nvim_set_keymap("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
+vim.keymap.set('n', '<leader>tH', ':-tabmove<CR>', { desc = '[t]ab move left' })
 -- move current tab to next position
-vim.api.nvim_set_keymap("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
+vim.keymap.set('n', '<leader>tL', ':+tabmove<CR>', { desc = '[t]ab move right' })
