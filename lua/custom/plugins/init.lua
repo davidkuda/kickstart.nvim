@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+
   {
     'Pocco81/auto-save.nvim',
     config = function()
@@ -12,11 +13,16 @@ return {
       }
     end,
   },
+
   {
     'azabiong/vim-highlighter',
     init = function()
       -- settings
     end,
   },
+
   { 'akinsho/git-conflict.nvim', version = '*', config = true },
+
+  -- Highlight todo, notes, etc in comments
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 }
