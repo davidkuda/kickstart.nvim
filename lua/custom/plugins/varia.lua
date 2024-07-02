@@ -16,13 +16,30 @@ return {
 
   {
     'azabiong/vim-highlighter',
-    init = function()
-      -- settings
-    end,
+    init = function() end,
+    -- vim.cmd([[
+    -- let HiSet   = 'f<CR>'
+    -- let HiErase = 'f<BS>'
+    -- let HiClear = 'f<C-L>'
+    -- let HiFind  = 'f<Tab>'
+    -- let HiSetSL = 't<CR>'
+    -- ]])
+    -- config = function()
+    --   vim.keymap.set("n", "<Leader>hs", "<CMD>HiSet<CR>", {desc="[h]ighlight [s]et"})
+    --   vim.keymap.set("n", "<Leader>hr", "<CMD>HiErase<CR>", {desc="[h]ighlight [r]emove"})
+    --   vim.keymap.set("n", "<Leader>hl", "<CMD>HiClear<CR>", {desc="[h]ighlight c[l]ear"})
+    -- end
   },
 
   { 'akinsho/git-conflict.nvim', version = '*', config = true },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
+  },
 }
