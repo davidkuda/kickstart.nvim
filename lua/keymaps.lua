@@ -32,6 +32,11 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- David:
 -- copy to clipboard
 vim.keymap.set('v', 'Y', '"+y')
+vim.keymap.set('n', 'Y', '"+yy')
+
+-- show / hide normal line numbers, when someone is watching my screen
+vim.keymap.set('n', '<leader>cr', ':set relativenumber<CR>')
+vim.keymap.set('n', '<leader>cn', ':set norelativenumber<CR>')
 
 -- working with tabs
 -- inspiration: https://github.com/nanozuki/tabby.nvim?tab=readme-ov-file#key-mapping-example
@@ -46,3 +51,6 @@ vim.keymap.set('n', '<leader>tl', 'gt', { desc = '[t]ab next ("right")' })
 vim.keymap.set('n', '<leader>tH', ':-tabmove<CR>', { desc = '[t]ab move left' })
 -- move current tab to next position
 vim.keymap.set('n', '<leader>tL', ':+tabmove<CR>', { desc = '[t]ab move right' })
+
+-- folds:
+vim.keymap.set('n', '<leader>f', 'za', { desc = 'toggle [f]old' })
