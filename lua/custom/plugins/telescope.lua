@@ -81,6 +81,14 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+      local extensions = require('telescope').extensions
+      local function search_git_bcommits(args)
+        args = {
+          git_command = { 'git', 'log', '--pretty=format:%cs %h %s %an', '--color' },
+        }
+        builtin.git_bcommits(args)
+      end
+
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
@@ -91,6 +99,9 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sv', extensions.git_file_history.git_file_history, { desc = '[s]earch previous [v]ersions' })
+      vim.keymap.set('n', '<leader>sc', builtin.git_bcommits, { desc = '[s]earch previous [c]commits' })
+      -- vim.keymap.set('n', '<leader>sc', search_git_bcommits, { desc = '[s]earch previous [c]commits' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
