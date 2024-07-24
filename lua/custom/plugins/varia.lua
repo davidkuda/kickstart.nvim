@@ -34,7 +34,12 @@ return {
   { 'akinsho/git-conflict.nvim', version = '*', config = true },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false }
+  },
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
@@ -47,11 +52,11 @@ return {
     opts = {
       overlay_opacity = 70,
       opacity_step = 1,
-      -- keys = {
-        -- brightness_up    = '<C-Up>',
-        -- brightness_down  = '<C-Down>',
-        -- toggle           = '<Leader>s',
-      -- }
+      keys = {
+        brightness_up    = '<Leader>hk',
+        brightness_down  = '<Leader>hk',
+        toggle           = '<Leader>ht',
+      }
     }
   }
 }
