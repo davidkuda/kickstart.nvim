@@ -56,7 +56,7 @@ vim.opt.splitbelow = true
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+-- vim.opt.list = true
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
@@ -73,3 +73,24 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+
+-- Folding / folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 42
+vim.opt.foldlevelstart = 2
+vim.opt.foldnestmax = 4
+function _G.CustomFoldText()
+    local line = vim.fn.getline(vim.v.foldstart)
+    local num_folded_lines = vim.v.foldend - vim.v.foldstart + 1
+    local foldtext = line .. " { ... " .. num_folded_lines .. " lines }"
+
+    -- Ensure the foldtext does not exceed the window width
+    return foldtext
+end
+vim.opt.foldtext = 'v:lua.CustomFoldText()'
+vim.opt.fillchars:append({fold = " "})
+vim.opt.foldminlines = 1
+vim.opt.foldtext = ""
