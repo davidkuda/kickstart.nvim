@@ -99,3 +99,32 @@ require('tabby').setup {
     }
   end,
 }
+
+---------------------------------------------------------------------------------------
+--- color schemes:
+
+-- NOTE: If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+
+-- vitesse (requires colorbuddy):
+vim.pack.add { 'https://github.com/tjdevries/colorbuddy.nvim' }
+vim.pack.add { 'https://github.com/2nthony/vitesse.nvim' }
+
+-- tokyonioght (why not):
+vim.pack.add { 'https://github.com/folke/tokyonight.nvim' }
+---@diagnostic disable-next-line: missing-fields
+require('tokyonight').setup {
+  styles = {
+    comments = { italic = false }, -- Disable italics in comments
+  },
+}
+
+-- rose-pine (my beloved):
+vim.pack.add({
+	{
+		src = "https://github.com/rose-pine/neovim",
+		name = "rose-pine",
+	},
+})
+require("rose-pine").setup()
+
+vim.cmd("colorscheme rose-pine")
