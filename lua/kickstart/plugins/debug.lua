@@ -93,3 +93,25 @@ require('dap-go').setup {
     detached = vim.fn.has 'win32' == 0,
   },
 }
+
+table.insert(dap.configurations.go, {
+  type = 'go',
+  name = 'Debug Lox script -- 10_functions.lox',
+  request = 'launch',
+  mode = 'debug',
+  program = '${workspaceFolder}/cmd/cli',
+  args = {
+    '${workspaceFolder}/cmd/cli/testscripts/10_functions.lox',
+  },
+})
+
+table.insert(dap.configurations.go, {
+  type = 'go',
+  name = 'Debug Lox script -- playground.lox',
+  request = 'launch',
+  mode = 'debug',
+  program = '${workspaceFolder}/cmd/cli',
+  args = {
+    '${workspaceFolder}/cmd/cli/testscripts/playground.lox',
+  },
+})
