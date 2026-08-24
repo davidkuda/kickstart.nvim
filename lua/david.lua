@@ -81,3 +81,14 @@ vim.keymap.set('i', ',.', '<Esc>A,<Enter>')
 -- Go: if err != nil {}
 vim.keymap.set('i', 'errnil', 'err != nil {}<Esc>i<Enter>')
 vim.keymap.set('i', 'ierrn', 'if err != nil {<Enter>\treturn nil, err<Enter><Backspace>}<Esc>')
+
+-- inspired by vimcasts "the edit command":
+-- http://vimcasts.org/episodes/the-edit-command/
+-- %% will expand to the directory of the current file.
+-- that way, you can type `:e %%` to edit other files in the same directory.
+-- see :help expand for more information, e.g. what %:h means.
+vim.keymap.set('c', '%%', function() return vim.fn.fnameescape(vim.fn.expand '%:h') .. '/' end, { expr = true })
+vim.keymap.set('n', '<leader>ew', ':e <C-R>=expand("%:p:h") . "/"<CR>', { desc = '[e]dit file in current [w]indow' })
+vim.keymap.set('n', '<leader>es', ':sp <C-R>=expand("%:p:h") . "/"<CR>', { desc = '[e]dit file in [s]plit' })
+vim.keymap.set('n', '<leader>ev', ':vsp <C-R>=expand("%:p:h") . "/"<CR>', { desc = '[e]dit file in [v]ertical split' })
+vim.keymap.set('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/"<CR>', { desc = '[e]dit file in a new [t]ab' })
