@@ -19,6 +19,12 @@ require('oil').setup {
 
 vim.keymap.set('n', '<Leader>n', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
+vim.pack.add { 'https://github.com/refractalize/oil-git-status.nvim' }
+require('oil-git-status').setup {}
+
+vim.pack.add { 'https://github.com/nvim-tree/nvim-web-devicons' }
+require('nvim-web-devicons').setup {}
+
 ---------------------------------------------------------------------------------------
 --- auto-save:
 vim.pack.add { 'https://github.com/Pocco81/auto-save.nvim' }
@@ -128,3 +134,56 @@ vim.pack.add({
 require("rose-pine").setup()
 
 vim.cmd("colorscheme rose-pine")
+
+---------------------------------------------------------------------------------------
+--- marks:
+vim.pack.add({"https://github.com/chentoast/marks.nvim"})
+require("marks").setup()
+
+---------------------------------------------------------------------------------------
+--- diagflow:
+vim.pack.add({
+  { src = "https://github.com/dgagn/diagflow.nvim" },
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  once = true,
+  callback = function()
+    require("diagflow").setup({
+      scope = "line",
+      max_width = 78,
+      placement = "inline",
+    })
+  end,
+})
+
+
+---------------------------------------------------------------------------------------
+--- harpoon:
+vim.pack.add({
+  { src = "https://github.com/nvim-lua/plenary.nvim" },
+  { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
+})
+
+local harpoon = require("harpoon")
+
+require("harpoon").setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>l", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>5", function() harpoon:list():select(5) end)
+vim.keymap.set("n", "<leader>6", function() harpoon:list():select(6) end)
+vim.keymap.set("n", "<leader>7", function() harpoon:list():select(7) end)
+vim.keymap.set("n", "<leader>8", function() harpoon:list():select(8) end)
+vim.keymap.set("n", "<leader>9", function() harpoon:list():select(9) end)
+vim.keymap.set("n", "<leader>0", function() harpoon:list():select(10) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+-- "<C-S-P>" -> ctrl shift p
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
