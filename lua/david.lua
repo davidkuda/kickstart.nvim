@@ -146,3 +146,39 @@ vim.keymap.set(
 	':tabe <C-R>=expand("%:p:h") . "/"<CR>',
 	{ desc = "[e]dit file in a new [t]ab" }
 )
+
+-----------------------------------------------------------------------------
+--- Varia:
+vim.opt.signcolumn = "yes:2"
+
+vim.keymap.set(
+	"n",
+	"<leader>de",
+	vim.diagnostic.open_float,
+	{ desc = "Show [d]iagnostic [e]rror messages" }
+)
+
+vim.filetype.add({
+	extension = {
+		tf = "terraform",
+		tfvars = "terraform",
+	},
+})
+
+vim.keymap.set("n", "<leader>yp", function()
+	local path = vim.fn.expand("%:p")
+	local root = vim.fn.systemlist(
+		"git -C "
+			.. vim.fn.shellescape(vim.fn.fnamemodify(path, ":h"))
+			.. " rev-parse --show-toplevel"
+	)[1]
+
+	if vim.v.shell_error ~= 0 or not root then
+		vim.notify("Not inside a Git repository", vim.log.levels.ERROR)
+		return
+	end
+
+	local relative_path = vim.fs.relpath(root, path)
+	vim.fn.setreg("+", relative_path)
+	vim.notify("Copied: " .. relative_path)
+end, { desc = "Yank file path relative to Git root" })
